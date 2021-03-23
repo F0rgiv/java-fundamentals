@@ -21,7 +21,7 @@ public class Main {
     }
 
     public static String pluralize(String word, int count) {
-        // return wioth an s added if number isn't 1
+        // return with an s added if number isn't 1
         if (!(count == 1)) {
             return word + 's';
         }
