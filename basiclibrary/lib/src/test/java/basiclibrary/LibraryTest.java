@@ -3,19 +3,25 @@
  */
 package basiclibrary;
 
+import org.junit.Assert;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
 public class LibraryTest {
+
   @Test
   public void testRoll() {
     int[] result = Library.roll(1);
     int[] result2 = Library.roll(5);
 
     //assert the right number of rolls
-    assertTrue("roll count is 1", result.length == 1);
-    assertTrue("roll count is 5", result2.length == 5);
+    assertEquals("roll count is 1", 1, result.length);
+    assertEquals("roll count is 5", 5, result2.length);
 
     //assert each roll is within range
     for (int num : result) {
@@ -28,8 +34,8 @@ public class LibraryTest {
 
   @Test
   public void testContainsDuplicates() {
-    int[] dupesArr = {2,2,6,4,8};
-    int[] noDupesArr = {2,4,5,6,8};
+    int[] dupesArr = {2, 2, 6, 4, 8};
+    int[] noDupesArr = {2, 4, 5, 6, 8};
 
     assertTrue("[2,2,6,4,8] should return true", Library.ContainsDuplicates(dupesArr));
     assertFalse("[2,4,5,6,8] should return false", Library.ContainsDuplicates(noDupesArr));
@@ -37,9 +43,9 @@ public class LibraryTest {
 
   @Test
   public void testAverage() {
-    float[] Arr1 = {2,4,6};
-    float[] Arr2 = {20,50,20,10};
-    float[] Arr3 = {1,2};
+    float[] Arr1 = {2, 4, 6};
+    float[] Arr2 = {20, 50, 20, 10};
+    float[] Arr3 = {1, 2};
 
     assertEquals("[2,4,6] should return 4", Library.average(Arr1), 4, .001);
     assertEquals("[20,50,20,10] should return 50", Library.average(Arr2), 25, .001);
@@ -69,4 +75,63 @@ public class LibraryTest {
       Library.arrayAverage(arrArr1),
       .001);
   }
+
+  @Test
+  public void weatherDataTestEmpty() {
+    //todo
+  }
+
+  @Test
+  public void weatherDataTest() {
+    int[][] test1 = {
+      {10, 10, 10, 10, 10, 10, 10},
+      {20, 20, 20, 20, 20, 20, 20},
+      {10, 18, 19, 13, 12, 12, 11}
+    };
+    String expected = "High: 20\n" +
+      "Low: 10\n" +
+      "Never saw temperature: 14\n" +
+      "Never saw temperature: 15\n" +
+      "Never saw temperature: 16\n" +
+      "Never saw temperature: 17\n";
+    String output = Library.weatherData(test1);
+    Assert.assertEquals(
+      "Did not print properly", expected, output);
+
+    int[][] test2 = {
+      {66, 64, 58, 65, 71, 57, 60},
+      {57, 65, 65, 70, 72, 65, 51},
+      {55, 54, 60, 53, 59, 57, 61},
+      {65, 56, 55, 52, 55, 62, 57}
+    };
+    expected = "High: 72\n" +
+      "Low: 51\n" +
+      "Never saw temperature: 63\n" +
+      "Never saw temperature: 67\n" +
+      "Never saw temperature: 68\n" +
+      "Never saw temperature: 69\n";
+    output = Library.weatherData(test2);
+    Assert.assertEquals("Did not print properly", expected, output);
+  }
+
+  @Test
+  public void tallyTestEmpty() {
+    List<String> votes = new ArrayList<>();
+    Assert.assertEquals("if no votes cast should return No votes cast", "No votes cast", Library.tally(votes));
+  }
+
+  @Test
+  public void tallyTestTie() {
+    ArrayList<String> votes = new ArrayList<>(Arrays.asList("Hedge", "Shrub", "Hedge", "Shrub"));
+    Assert.assertTrue("if it's a tie the first one counted wins",
+      (Library.tally(votes) == "Hedge")); // TODO add  || Library.tally(votes) "Shrub"
+  }
+
+  @Test
+  public void tallyTestNormalUse() {
+    List<String> votes = new ArrayList<>(Arrays.asList(
+      "Bush", "Bush", "Bush", "Shrub", "Hedge", "Shrub", "Bush", "Hedge", "Bush"));
+    Assert.assertEquals("Did not print properly", "Bush", Library.tally(votes));
+  }
+
 }
