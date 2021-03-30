@@ -21,7 +21,7 @@ public class RestaurantTest {
                 "name: Cheep'n'good, stars: 0.0, price: $(1)",
                 restaurant3.toString());
     }
-
+    @Test
     public void RestaurantTestGetRating() {
         Restaurant restaurant = new Restaurant("nummies", "$$$$");
         assertEquals("should show default rating", -1, restaurant.getRating(), 2);
@@ -32,7 +32,7 @@ public class RestaurantTest {
         new Review("This place is amazing!", "James", 5, restaurant);
         assertEquals("should show correct", 3.7, restaurant.getRating(), 2);
     }
-
+    @Test
     public void RestaurantTestCantAddDoubleRating() {
         Restaurant restaurant = new Restaurant("nummies", "$$$$");
         Review review = new Review("This place is amazing!", "James", 5, restaurant);
