@@ -60,4 +60,31 @@ Take a list of strings and returns the string that is repeated the most within t
 Analyzes a .js file to identify to find what lines are missing a ; 
 - args 
     - String filePath: path to .js file that you would like to have linted. 
-- returns: The same sting is returned as is consoled. 
+- returns: The same sting is returned as is consoled.
+
+# Inheritance
+
+## Inheritance.Restaurant
+    String name | name of the restaurant
+    int price | the price between 1 and 4 of the restaurant.
+    Set<Review> reviews | a set of reviews for the restaurant.
+
+### Inheritance.Restaurant.getPrice
+- args
+- returns String: returns $, $$, $$$ or $$$$ depending on the price of the restaurant.
+
+### Inheritance.Restaurant.getRating
+- args
+- returns String: returns a float between 0 and 5 with the restaurant rating.
+
+### Inheritance.Restaurant.getRating
+- args
+- returns String: returns a String in the format of "name: %s, stars: %.1f, price: %s(%d)" i.e. "name: nummies, stars: 0.0, price: $$$$(4)".
+
+## Inheritance.Review
+    String body | The actual review body it's self.
+    String author | the name of the author of this review.
+    float rating | a 1 to 5 star rating for the restaurant 0-5
+    Restaurant restaurant | the restaurant that this review is about. 
+
+    Upon creation of this review it will be added into the related restaurants set of reviews.
