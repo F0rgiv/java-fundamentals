@@ -7,6 +7,10 @@ public class Review {
     Restaurant restaurant;
 
     public Review(String body, String author, int rating, Restaurant restaurant) {
+        //validate that the rating is properly set.
+        if (rating > 5) rating = 5;
+        if (rating < 0) rating = 0;
+
         this.body = body;
         this.author = author;
         this.rating = rating;

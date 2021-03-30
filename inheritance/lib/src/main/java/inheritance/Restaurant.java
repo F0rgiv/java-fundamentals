@@ -42,20 +42,16 @@ public class Restaurant {
     }
 
     public float getRating() {
-        if (this.reviews.size() == 0) return -1;
+        if (this.reviews.size() == 0) return 0;
         return (float) this.reviews.stream()
                 .mapToDouble( review -> review.rating)//get only ratings
                 .sum() / this.reviews.size();
     }
 
-    public float stars() {
-        return 0;
-    }
-
     @Override
     public String toString() {
         return String.format("name: %s, stars: %.1f, price: %s(%d)",
-                this.name, stars(), this.getPrice(), this.price);
+                this.name, getRating(), this.getPrice(), this.price);
     }
 
     public void addReview(Review review) {
